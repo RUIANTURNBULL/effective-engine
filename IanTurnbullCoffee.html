@@ -1,0 +1,205 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  Author: Ian Turnbull
+    Version: 11/9/16
+    Itec 225 9am
+    gillians_ice_cream.html
+    Assignment 4
+   -->
+
+<head>
+    <title>Cafe Turnbull Coffee</title>
+    <meta charset="utf-8" />
+
+
+    <style type="text/css">
+        body {
+            margin-left: 50px;
+            margin-right: 50px;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        h3 {
+            border-style: solid;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 0.50em;
+            border-style: solid;
+            border-color: black;
+            border-width: 0.2em;
+            background-color: beige;
+            color: black;
+            text-align: left;
+        }
+
+        td {
+            font-size: 18px;
+            padding: 0.50em;
+            border-style: solid;
+            border-color: black;
+            border-width: 0.2em;
+            background-color: beige;
+            color: black;
+            text-align: left;
+        }
+
+        th {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .red {
+            color: red;
+            font-size: 1.2em;
+            text-decoration: underline;
+        }
+
+        caption {
+            font-weight: bold;
+            padding: 0.5em;
+            border-style: solid;
+            border-color: black;
+            border-width: 0.1em;
+            background-color: beige;
+            color: black;
+        }
+
+        #outp {
+            background-color: beige;
+            width: 20em;
+            margin: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-style: solid;
+            border-color: black;
+            border-width: 0.2em;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function clear() {
+            document.getElementById("outar").remove();
+        }
+
+        /*
+        *calculate will validate nameand will also print out the order quantity
+        */
+        function calculate() {
+            var nameValidate = /^[A-Za-z]+$/;
+            var numValidate = /^[0-9]+$/;
+
+            var name = document.getElementById("fn").value;
+            if (!name.match(nameValidate)) {
+                alert("The name you entered " + name + " is not in the correct form. The correct form is all alphabetic, no more than 10 letters" +
+                    " Go back and fix the name please.");
+                document.getElementById("outar").remove();
+            }
+
+            var sumatranCnt = document.getElementById("Sumatran").value;
+            if (!sumatranCnt.match(numValidate)) {
+                alert("Quantity for Sumatran Coffee is not a number. Go back and fix quantity please.");
+                document.getElementById("outar").remove();
+            }
+
+            var frenchCnt = document.getElementById("French").value;
+            if (!frenchCnt.match(numValidate)) {
+                alert("Quantity for French Roast Coffee is not a number. Go back and fix quantity please.");
+                document.getElementById("outar").remove();
+            }
+
+            var caramelCnt = document.getElementById("Caramel").value;
+            if (!caramelCnt.match(numValidate)) {
+                alert("Quantity for Caramel nut roast Coffee is not a number. Go back and fix quantity please.");
+                document.getElementById("outar").remove();
+            }
+
+            var decafCnt = document.getElementById("Decaf").value;
+            if (!decafCnt.match(numValidate)) {
+                alert("Quantity for Decaf Coffee is not a number. Go back and fix quantity please.");
+                document.getElementById("outar").remove();
+            }
+
+            document.getElementById("outar").innerHTML = "Sumatran: " + sumatranCnt + "</br>French Roast: " + frenchCnt + "</br>Caramel Nut Roast: " + caramelCnt +
+                "</br>Decaf: " + decafCnt;
+
+        }
+
+    </script>
+</head>
+<body>
+
+    <form id="myForm" action="">
+        <table>
+            <caption>
+                Welcome to Cafe Turnbull Coffee<br />
+                On-line Order Form
+            </caption>
+            <tr>
+                <td colspan="3">
+                    <span class="red"></span>
+                    <label>
+                        Name:
+                        <input type="text" maxlength="10" name="fn" id="fn" />
+                        (all alphabetics max length 10)
+                    </label>
+                </td>
+                <th rowspan="12" id="outp"><h3>Order Summary</h3><p id="outar"></p></th>
+            </tr>
+  
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                
+            </tr>
+            <tr>
+                <td>Sumatran Coffee (1lb.)</td>
+                <td>$10.00</td>
+                <td><input type="text" name="SumatranAmt" id="Sumatran" value="0" /></td>
+            </tr>
+            <tr>
+                <td>French Morning Roast</td>
+                <td>$11.50</td>
+                <td><input type="text" name="FrenchAmt" id="French" value="0" /></td>
+            </tr>
+            <tr>
+                <td>Caramel Nut Roast</td>
+                <td>$12.00</td>
+                <td><input type="text" name="CaramelAmt" id="Caramel" value="0" /></td>
+            </tr>
+            <tr>
+                <td>Decaffeinated Roast</td>
+                <td>$9.50</td>
+                <td><input type="text" name="DecafAmt" id="Decaf" value="0" /></td>
+            </tr>
+            
+            <tr>
+                <td colspan="3">
+                    <h4>Payment Method</h4>
+                    
+                    <input type="radio" name="pay" id="Visa" />Visa<br>
+                    <input type="radio" name="pay" id="Master" />Master Card<br>
+                    <input type="radio" name="pay" id="Discover" />Discover<br>
+                    <input type="radio" name="pay" id="Check" />Check<br><br>
+                    
+                    <input type="button" onclick="calculate()" value="Order Summary" />
+                    <input type="submit" value="Submit Order"/>
+                    <button type="reset" onclick="clear()">Clear Form</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>
